@@ -16,11 +16,21 @@ async function run(){
     await client.connect();
     const database = client.db("travelAgency");
     const serviceCollection = database.collection("services");
+    const orderCollection = database.collection("orders");
     //GET API -----------------------------get
     app.get('/services', async (req, res)=>{
         const cursor = serviceCollection.find({});
         const services = await cursor.toArray();
         res.send(services);
+    })
+    //POST API-----------------------------post
+    app.post('/orders', async(req, res)=>{
+        const orders = req.body;
+        console.log('hit the post API',orders);
+        
+        const result = await orderCollection.insertOne(orders);
+       console.log(result);
+        res.json(result)
     })
 
 
