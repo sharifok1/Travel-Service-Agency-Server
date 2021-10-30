@@ -23,7 +23,7 @@ async function run(){
         const services = await cursor.toArray();
         res.send(services);
     })
-    //POST API-----------------------------post
+    //POST order API-----------------------------post order
     app.post('/orders', async(req, res)=>{
         const orders = req.body;
         console.log('hit the post API',orders);
@@ -31,6 +31,13 @@ async function run(){
         const result = await orderCollection.insertOne(orders);
        console.log(result);
         res.json(result)
+    })
+    //GET ORDER API---------------------------get order
+    app.get('/orders', async(req, res)=>{
+      const cursor = orderCollection.find({});
+      const orders = await cursor.toArray();
+      res.send(orders);
+
     })
 
 
