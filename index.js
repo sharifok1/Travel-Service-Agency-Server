@@ -56,8 +56,13 @@ async function run(){
       res.json(result);
 
     })
-
-
+    //update
+    app.put('/order/status', async(req,res)=>{
+      const id = req.body.id;
+      const status = req.body.status;
+      const updateStatus = await orderCollection.updateOne({_id:ObjectId(id)},{$set:{orderStatus:status}},{upsert: true});
+      res.json(updateStatus);
+    })
   }
   finally{
        //   await client.close();//can ignor
@@ -66,7 +71,7 @@ async function run(){
 run().catch(console.dir);
 
 app.get('/', (req,res)=>{
-    res.send('Travel Agency server is running');
+    res.send('Travel Agency server');
 })
 app.listen(port,()=>{
     console.log('listion from server port:',port)
