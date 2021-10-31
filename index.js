@@ -23,6 +23,15 @@ async function run(){
         const services = await cursor.toArray();
         res.send(services);
     })
+    //POST services-----------------------POST API
+    app.post('/services', async (req,res)=>{
+      const Addservices = req.body;
+      console.log('touched the post API',Addservices);
+      const results = await serviceCollection.insertOne(Addservices);
+      res.json(results);
+
+    })
+
     //POST order API-----------------------------post order
     app.post('/orders', async(req, res)=>{
         const orders = req.body;
