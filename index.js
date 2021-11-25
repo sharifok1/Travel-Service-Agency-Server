@@ -71,7 +71,7 @@ async function run(){
 run().catch(console.dir);
 
 app.get('/', (req,res)=>{
-    res.send('Travel Agency server');
+    res.send(' hello from Travel Agency server');
 })
 app.listen(port,()=>{
     console.log('listion from server port:',port)
